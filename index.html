@@ -21,19 +21,24 @@
             <div class="forms">
                 <div class="login-container">
                     <h1 class="login-container__h1">Login Form</h1>
-                    <input class="input-field" type="text" placeholder="Username">
-                    <input class="input-field" type="password" placeholder="Password">
-                    <button class="login-container__button" type="button">Login</button>
+                    <form class="login-container__form">
+                        <input class="input-field" type="text" placeholder="Email" name="email" required>
+                        <input class="input-field" type="password" placeholder="Password" name="password" required>
+                        <button class="login-container__button" type="submit">Login</button>
+                    </form>
                 </div>
 
                 <div class="signup-container">
                     <h1 class="login-container__h1">Sign Up Form</h1>
-                    <input class="input-field" type="text" placeholder="Username">
-                    <input class="input-field" type="email" placeholder="Email">
-                    <input class="input-field" type="password" placeholder="Password">
-                    <button class="login-container__button" type="button">Sign Up</button>
+                    <form class="signup-container__form">
+                        <input class="input-field" type="text" placeholder="Username" name="username" required>
+                        <input class="input-field" type="email" placeholder="Email" name="email" required>
+                        <input class="input-field" type="password" placeholder="Password" name="password" required>
+                        <button class="login-container__button" type="submit">Sign Up</button>
+                    </form>
                 </div>
             </div>
+            <div class="server-info"></div>
         </div>
     </section>
 </div>

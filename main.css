@@ -81,6 +81,9 @@ body {
     display: none;
 }
 
+.server-info{
+    margin: 1rem;
+}
 /* ELEMENTS */
 
 .switch__header {
@@ -119,4 +122,10 @@ body {
 
 .switch__button--login {
     display: none;
+}
+.server-info__p-success{
+    color: green;
+}
+.server-info__p-fail{
+    color: red;
 }
