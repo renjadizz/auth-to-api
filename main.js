@@ -15,7 +15,13 @@ window.onload = (event) => {
     formLogin.onsubmit = async function (event) {
         let fetchUrl = "https://api.realworld.io/api/users/login";
         let messageString = "logged in";
-        await postRequest(event, formLogin, fetchUrl, messageString);
+        let data = await postRequest(event, formLogin, fetchUrl, messageString);
+        if (data) {
+            let serverInfo = document.querySelector(".server-info");
+            clearServerInfo(serverInfo);
+            document.querySelector(".container").style.cssText = "display: none";
+            createListUserInfo(data.user);
+        }
     }
 
     async function postRequest(event, formType, fetchUrl, messageString) {
@@ -41,6 +47,7 @@ window.onload = (event) => {
             pServerInfo.setAttribute("class", "server-info__p-success");
             pServerInfo.textContent = `${jsonData.user.username} ${messageString}`;
             serverInfo.appendChild(pServerInfo);
+            return jsonData;
         } catch (err) {
             let pServerInfo = document.createElement("p");
             pServerInfo.setAttribute("class", "server-info__p-fail");
@@ -49,41 +56,48 @@ window.onload = (event) => {
         }
     }
 
-    formLogin.onsubmit = async function (event) {
-        event.preventDefault();
-        let formData = new FormData(formLogin);
-        let formDataObject = {};
-        formData.forEach((value, key) => formDataObject[key] = value);
-        let sendData = {user: formDataObject};
-        let jsonSend = JSON.stringify(sendData);
-        try {
-            const fetchResult = await fetch("https://api.realworld.io/api/users/login",
-                {
-                    method: "POST",
-                    body: jsonSend,
-                    headers: {
-                        "Content-type": "application/json"
-                    }
-                });
-            const jsonData = await fetchResult.json();
-            let pServerInfo = document.createElement("p");
-            pServerInfo.setAttribute("class", "server-info__p-success");
-            pServerInfo.textContent = `${jsonData.user.username} logged in`;
-            let serverInfo = document.querySelector(".server-info");
-            serverInfo.appendChild(pServerInfo);
-        } catch (err) {
-            let pServerInfo = document.createElement("p");
-            pServerInfo.setAttribute("class", "server-info__p-fail");
-            pServerInfo.textContent = `Something went wrong. Try again later\n${err.message}`;
-            let serverInfo = document.querySelector(".server-info");
-            serverInfo.appendChild(pServerInfo);
-        }
-    }
 
     function clearServerInfo(serverInfo) {
         while (serverInfo.firstChild) {
             serverInfo.removeChild(serverInfo.firstChild);
         }
+    }
+
+    function createListUserInfo(data) {
+        let serverInfo = document.querySelector(".server-info");
+        let dlNode = document.createElement("dl");
+        dlNode.setAttribute("class", "server-info__dl");
+        for (const property in data) {
+            if (property !== "token") {
+                let dtNode = document.createElement("dt");
+                dtNode.textContent = property;
+                dtNode.setAttribute("class", "server-info__dt");
+                let ddNode = document.createElement("dd");
+                ddNode.setAttribute("class", "server-info__dd");
+                if (property === "image") {
+                    let imgNode = document.createElement("img");
+                    imgNode.setAttribute("class", "server-info__img");
+                    imgNode.src = data[property];
+                    ddNode.appendChild(imgNode);
+                } else {
+                    ddNode.textContent = data[property];
+                }
+                dlNode.appendChild(dtNode);
+                dlNode.appendChild(ddNode);
+            }
+        }
+        serverInfo.appendChild(dlNode);
+        let btnNode = document.createElement("button");
+        btnNode.setAttribute("class", "login-container__button");
+        btnNode.textContent = "Return";
+        btnNode.addEventListener("click", returnToMain);
+        serverInfo.appendChild(btnNode);
+    }
+
+    function returnToMain(e) {
+        let serverInfo = document.querySelector(".server-info");
+        clearServerInfo(serverInfo);
+        document.querySelector(".container").style.cssText = "display: grid";
     }
 
     function signup() {

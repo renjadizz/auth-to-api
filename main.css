@@ -37,7 +37,7 @@ body {
     width: 40vw;
     height: 45vh;
     border-radius: 1rem;
-    background: linear-gradient(to bottom, rgb(6, 108, 224),  rgb(14, 48, 122));
+    background: linear-gradient(to bottom, rgb(6, 108, 224), rgb(14, 48, 122));
     align-items: center;
     justify-content: center;
     overflow: hidden;
@@ -82,9 +82,10 @@ body {
     display: none;
 }
 
-.server-info{
+.server-info {
     margin: 1rem;
 }
+
 /* ELEMENTS */
 
 .switch__header {
@@ -119,14 +120,34 @@ body {
     margin: 0.3rem;
 }
 
+.server-info__dl {
+    background: lightblue;
+    border: solid 1rem brown;
+    padding: 3rem;
+    width: 30vw;
+    font-size: 2rem;
+}
+
+.server-info__dt {
+    font-weight: bold;
+}
+
+.server-info__img {
+    border-radius: 40%;
+    max-width: 128px;
+    max-height: 128px;
+}
+
 /* MODIFIERS */
 
 .switch__button--login {
     display: none;
 }
-.server-info__p-success{
+
+.server-info__p-success {
     color: green;
 }
-.server-info__p-fail{
+
+.server-info__p-fail {
     color: red;
 }
