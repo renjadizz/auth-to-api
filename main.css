@@ -1,0 +1,122 @@
+/* VARIABLES */
+
+:root {
+    /* COLORS */
+    --BGCOLOR: #EFF6FF;
+    --MAINTEXT: #2A4A5C;
+    --FBBUTTON: #255A9B;
+    --INBUTTON: #0076B6;
+    --SBMTBUTTON: #3698FB;
+    --SECONDARYTEXT: #7B8A92;
+}
+
+/* GENERAL STYLES */
+
+body {
+    background-color: var(--BGCOLOR);
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Barlow', sans-serif;
+}
+
+/* BLOCKS */
+.main {
+    margin: 0 auto;
+    padding: 0;
+    display: grid;
+    flex-wrap: wrap;
+}
+
+.container {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    width: 40vw;
+    height: 45vh;
+    border-radius: 1rem;
+    background: linear-gradient(to bottom, rgb(6, 108, 224),  rgb(14, 48, 122));
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.switch {
+    text-align: center;
+    font-size: 2rem;
+    letter-spacing: 0.5rem;
+    padding: 2rem;
+}
+
+.forms {
+    background-color: white;
+    width: 25vw;
+    max-width: 100%;
+    height: 43vh;
+}
+
+.login-container {
+    text-align: center;
+}
+
+.input-field {
+    box-sizing: border-box;
+    font-size: 1rem;
+    padding: 1rem;
+    border-radius: 0.5rem;
+    border: 0.4rem solid rgb(168, 168, 168);
+    width: 90%;
+    outline: none;
+    margin: 0.3rem;
+}
+
+.signup-container {
+    position: relative;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -60%);
+    text-align: center;
+    display: none;
+}
+
+/* ELEMENTS */
+
+.switch__header {
+    color: lightblue;
+    font-size: 2rem;
+}
+
+.switch__button {
+    border: none;
+    font-size: 1rem;
+    padding: 1rem;
+    border-radius: 0.6rem;
+    background-color: white;
+    width: 100%;
+}
+
+.login-container__h1 {
+    color: black;
+    font-size: 1.5rem;
+}
+
+.login-container__button {
+    box-sizing: border-box;
+    color: white;
+    font-size: 1rem;
+    padding: 1rem;
+    border-radius: 0.4rem;
+    border: none;
+    width: 90%;
+    outline: none;
+    background-color: rgb(56, 102, 189);
+    margin: 0.3rem;
+}
+
+/* MODIFIERS */
+
+.switch__button--login {
+    display: none;
+}
