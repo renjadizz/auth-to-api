@@ -1,5 +1,12 @@
 window.onload = (event) => {
+
+    let signupButton = document.querySelector(".switch__button--signup");
+    signupButton.addEventListener("click", signup);
+    let loginButton = document.querySelector(".switch__button--login");
+    loginButton.addEventListener("click", login);
     let formSignup = document.querySelector(".signup-container__form");
+
+
     formSignup.onsubmit = async function (event) {
         event.preventDefault();
         let serverInfo = document.querySelector(".server-info");
@@ -37,20 +44,27 @@ window.onload = (event) => {
             serverInfo.removeChild(serverInfo.firstChild);
         }
     }
+
+    function signup() {
+        document.querySelector(".login-container").style.cssText = "display: none;";
+        document.querySelector(".signup-container").style.cssText = "display: block;";
+        document.querySelector(".container").style.cssText = "background: linear-gradient(to bottom, rgb(56, 189, 149),  rgb(28, 139, 106));";
+        document.querySelector(".switch__button--signup").style.cssText = "display: none";
+        document.querySelector(".switch__button--login").style.cssText = "display: block";
+        let serverInfo = document.querySelector(".server-info");
+        clearServerInfo(serverInfo);
+    }
+
+    function login() {
+        document.querySelector(".signup-container").style.cssText = "display: none;";
+        document.querySelector(".login-container").style.cssText = "display: block;";
+        document.querySelector(".container").style.cssText = "background: linear-gradient(to bottom, rgb(6, 108, 224),  rgb(14, 48, 122));";
+        document.querySelector(".switch__button--login").style.cssText = "display: none";
+        document.querySelector(".switch__button--signup").style.cssText = "display: block";
+        let serverInfo = document.querySelector(".server-info");
+        clearServerInfo(serverInfo);
+    }
 }
 
-function signup() {
-    document.querySelector(".login-container").style.cssText = "display: none;";
-    document.querySelector(".signup-container").style.cssText = "display: block;";
-    document.querySelector(".container").style.cssText = "background: linear-gradient(to bottom, rgb(56, 189, 149),  rgb(28, 139, 106));";
-    document.querySelector(".switch__button--signup").style.cssText = "display: none";
-    document.querySelector(".switch__button--login").style.cssText = "display: block";
-}
 
-function login() {
-    document.querySelector(".signup-container").style.cssText = "display: none;";
-    document.querySelector(".login-container").style.cssText = "display: block;";
-    document.querySelector(".container").style.cssText = "background: linear-gradient(to bottom, rgb(6, 108, 224),  rgb(14, 48, 122));";
-    document.querySelector(".switch__button--login").style.cssText = "display: none";
-    document.querySelector(".switch__button--signup").style.cssText = "display: block";
-}
+
