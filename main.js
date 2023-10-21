@@ -5,7 +5,7 @@ window.onload = (event) => {
     let loginButton = document.querySelector(".switch__button--login");
     loginButton.addEventListener("click", login);
     let formSignup = document.querySelector(".signup-container__form");
-
+    let formLogin = document.querySelector(".login-container__form");
 
     formSignup.onsubmit = async function (event) {
         event.preventDefault();
@@ -36,7 +36,37 @@ window.onload = (event) => {
             pServerInfo.textContent = `Something went wrong. Try again later\n${err.message}`;
             serverInfo.appendChild(pServerInfo);
         }
+    }
 
+    formLogin.onsubmit = async function (event) {
+        event.preventDefault();
+        let formData = new FormData(formLogin);
+        let formDataObject = {};
+        formData.forEach((value, key) => formDataObject[key] = value);
+        let sendData = {user: formDataObject};
+        let jsonSend = JSON.stringify(sendData);
+        try {
+            const fetchResult = await fetch("https://api.realworld.io/api/users/login",
+                {
+                    method: "POST",
+                    body: jsonSend,
+                    headers: {
+                        "Content-type": "application/json"
+                    }
+                });
+            const jsonData = await fetchResult.json();
+            let pServerInfo = document.createElement("p");
+            pServerInfo.setAttribute("class", "server-info__p-success");
+            pServerInfo.textContent = `${jsonData.user.username} logged in`;
+            let serverInfo = document.querySelector(".server-info");
+            serverInfo.appendChild(pServerInfo);
+        } catch (err) {
+            let pServerInfo = document.createElement("p");
+            pServerInfo.setAttribute("class", "server-info__p-fail");
+            pServerInfo.textContent = `Something went wrong. Try again later\n${err.message}`;
+            let serverInfo = document.querySelector(".server-info");
+            serverInfo.appendChild(pServerInfo);
+        }
     }
 
     function clearServerInfo(serverInfo) {
